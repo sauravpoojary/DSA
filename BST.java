@@ -141,6 +141,22 @@ public class BST {
         return root;
 
     }
+
+    public static void printInRange(Node root, int X, int Y){
+
+        if(root == null) return;
+        if(root.data >= X && root.data <= Y){
+            printInRange(root.left, X, Y);
+            System.out.print(root.data + "-> ");
+            printInRange(root.right, X, Y);
+        }else if(root.data > Y){
+            //left subtree only
+            printInRange(root.left, X, Y);
+        }else {
+            printInRange(root.right, X, Y);
+        }
+
+    }
     public static void main(String[] args) {
         int []values = {5, 1, 3, 4, 2, 7, 6};
 
@@ -160,6 +176,12 @@ public class BST {
         delete(root, delete_val);
 
         inorderTraversal(root);
+        System.out.println();
+       
+        int x = 4;
+        int y = 8;
+         System.out.println("Printing in range X:: "+x+" Y:: "+ y);
+        printInRange(root, x, y);
 
     }
 }
